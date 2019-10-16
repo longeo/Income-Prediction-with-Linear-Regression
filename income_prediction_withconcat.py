@@ -71,29 +71,12 @@ df.drop('Wears Glasses',axis='columns',inplace=True)
 X_train = np.array(df.iloc[0:train_index])
 X_test = np.array(df.tail(len(df) - (train_index)))
 
- ######## Do linear regression on training data (Method 1)
- model = LinearRegression()
- model.fit(X_train, y_train)
- # coeff_df = pd.DataFrame(regressor.coef_, X.columns, columns=['Coefficient'])
- y_pred = model.predict(X_test)
- print(model.score(X_train, y_train))
-
-####### Use Decision Trees
-# from sklearn.tree import DecisionTreeClassifier, export_graphviz, export
-# from sklearn import metrics
-
-# clf_tree = DecisionTreeRegressor(max_depth = 4)
-# 		   DecisionTreeRegressor
-
-# clf_tree.fit(X_train, y_train)
-# tree_predict = clf_tree.predict(X_test)
-
-####### Random Forest Regressor (Method 2)
-#from sklearn.ensemble import RandomForestRegressor
-#regressor = RandomForestRegressor()
-#regressor = RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,max_features='auto', max_leaf_nodes=None,min_impurity_decrease=0.0, min_impurity_split=None,min_samples_leaf=1, min_samples_split=2,min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=None,oob_score=False, random_state=None, verbose=0, warm_start=False)
-#regressor.fit(X_train, y_train)
-#y_pred = regressor.predict(X_test)
+###### Random Forest Regressor (Method 2)
+from sklearn.ensemble import RandomForestRegressor
+regressor = RandomForestRegressor()
+regressor = RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,max_features='auto', max_leaf_nodes=None,min_impurity_decrease=0.0, min_impurity_split=None,min_samples_leaf=1, min_samples_split=2,min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=None,oob_score=False, random_state=None, verbose=0, warm_start=False)
+regressor.fit(X_train, y_train)
+y_pred = regressor.predict(X_test)
 
 # ##### Random Forest Regressor with tuned Hyper parameters (Method 3)
 # A hyperparameter is a parameter whose value is set before the learning process begins.
